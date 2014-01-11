@@ -15,7 +15,7 @@ When you want to pull your modification to this repository. You have to follow t
 /*
  *              Name: 
  *           Version: 
- *       MBB version: 
+ *  ModernBB version: 
  *         Developer: 
  * Developer website: 
  *       Description: 
