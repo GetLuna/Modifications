@@ -2,9 +2,9 @@
 ##
 ##         Mod title:  Spoiler
 ##
-##       Mod version:  1.1.0
-## Works on ModernBB:  2.2.2
-##      Release date:  01.10.'14
+##       Mod version:  1.2.0
+## Works on ModernBB:  3.0.0
+##      Release date:  21.03.'14
 ##            Author:  ModernBB Group, Visman (visman@inbox.ru)
 ##
 ##       Description:  Adds bb-BBCode [spoiler]
@@ -20,7 +20,7 @@
 ##             Notes:  English
 ##
 ##        DISCLAIMER:  Please note that "mods" are not officially supported by
-##                     MoernBB. Installation of this modification is done at 
+##                     ModernBB. Installation of this modification is done at 
 ##                     your own risk. Backup your forum database and any and
 ##                     all applicable files before proceeding.
 ##
@@ -96,42 +96,42 @@
 #
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|acronym|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 
 #
 #---------[ 12. REPLACE WITH ]--------------------------------------------------
 #
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(spoiler|b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|acronym|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(spoiler|b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
 
 #
 #---------[ 13. FIND ]----------------------------------------------------------
 #
 
 	// List of all the tags
-	$tags = array('size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'acronym', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
 
 #
 #---------[ 14. REPLACE WITH ]--------------------------------------------------
 #
 
 	// List of all the tags
-	$tags = array('spoiler', 'size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'acronym', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('spoiler', 'size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
 
 #
 #---------[ 15. FIND ]----------------------------------------------------------
 #
 
 	// Tags we can nest and the depth they can be nested to
-	$tags_nested = array('quote' => $pun_config['o_quote_depth'], 'list' => 5, '*' => 5);
+	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5);
 
 #
 #---------[ 16. REPLACE WITH ]--------------------------------------------------
 #
 
 	// Tags we can nest and the depth they can be nested to
-	$tags_nested = array('quote' => $pun_config['o_quote_depth'], 'list' => 5, '*' => 5, 'spoiler' => 5);
+	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5, 'spoiler' => 5);
 
 #
 #---------[ 17. FIND ]----------------------------------------------------------
