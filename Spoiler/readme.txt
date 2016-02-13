@@ -1,28 +1,12 @@
-##
-##
-##         Mod title:  Spoiler
-##
-##       Mod version:  2.0
-##     Works on Luna:  1.3 and higher
-##      Release date:  13.02.'16
-##            Author:  Luna Group, Visman
-##
-##       Description:  Adds BBCode [spoiler]
-##
-##    Affected files:  /include/search_idx.php
-##                     /include/parser.php
-##
-##        Affects DB:  No
-##
-##             Notes:  English
-##
-##        DISCLAIMER:  Please note that "mods" are not officially supported by
-##                     ModernBB. Installation of this modification is done at 
-##                     your own risk. Backup your forum database and any and
-##                     all applicable files before proceeding.
-##
-##
-
+/*
+ *              Name: Spoiler
+ *           Version: 2.1
+ *      Luna version: 1.3, 1.4
+ *         Developer: Luna Group, Visman
+ * Developer website: http://getluna.org
+ *       Description: Adds the spoiler tag
+ * Last release date: 13.02.'16
+ */
 
 #
 #---------[ 1. OPEN ]-----------------------------------------------------------
