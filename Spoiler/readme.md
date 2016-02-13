@@ -1,6 +1,6 @@
 ## About
 - **Name:** Spoiler
-- **Version:** 2.1
+- **Version:** 2.2
 - **Luna version:** 1.3, 1.4
 - **Developer:** Luna Group, Visman
 - **Developer website:** http://getluna.org
