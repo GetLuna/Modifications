@@ -2,17 +2,14 @@
 ##
 ##         Mod title:  Spoiler
 ##
-##       Mod version:  1.2.0
-## Works on ModernBB:  3.0.0
-##      Release date:  21.03.'14
-##            Author:  ModernBB Group, Visman (visman@inbox.ru)
+##       Mod version:  2.0
+##     Works on Luna:  1.3 and higher
+##      Release date:  13.02.'16
+##            Author:  Luna Group, Visman
 ##
-##       Description:  Adds bb-BBCode [spoiler]
+##       Description:  Adds BBCode [spoiler]
 ##
-##    Repository URL:  
-##
-##    Affected files:  /lang/[language]/language.php
-##                     /include/search_idx.php
+##    Affected files:  /include/search_idx.php
 ##                     /include/parser.php
 ##
 ##        Affects DB:  No
@@ -31,131 +28,113 @@
 #---------[ 1. OPEN ]-----------------------------------------------------------
 #
 
-/lang/[language]/language.php
+/include/search_idx.php
 
 #
-#---------[ 2. ADD NEW ELEMENT OF ARRAY ]---------------------------------------
+#---------[ 2. FIND ]-----------------------------------------------------------
 #
 
-'Hidden text' => 'Hidden text',
+	// Remove BBCode
+	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|thread|comment|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
 
 #
-#---------[ 3. SAVE ]-----------------------------------------------------------
+#---------[ 3. REPLACE WITH ]---------------------------------------------------
 #
 
-/lang/[language]/language.php
+	// Remove BBCode
+	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|thread|comment|forum|user|left|center|right|hr|justify|spoiler)(?:\=[^\]]*)?\]%', ' ', $text);
 
 #
-#---------[ 4. OPEN ]-----------------------------------------------------------
+#---------[ 4. SAVE ]-----------------------------------------------------------
 #
 
 /include/search_idx.php
 
 #
-#---------[ 5. FIND ]-----------------------------------------------------------
-#
-
-	// Remove BBCode
-	$text = preg_replace('%\[/?(b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
-
-#
-#---------[ 6. REPLACE WITH ]---------------------------------------------------
-#
-
-	// Remove BBCode
-	$text = preg_replace('%\[/?(spoiler|b|u|s|ins|del|em|i|h|colou?r|quote|code|img|url|email|list|topic|post|forum|user|left|center|right|hr|justify)(?:\=[^\]]*)?\]%', ' ', $text);
-
-#
-#---------[ 7. SAVE ]-----------------------------------------------------------
-#
-
-/include/search_idx.php
-
-#
-#---------[ 8. OPEN ]-----------------------------------------------------------
+#---------[ 5. OPEN ]-----------------------------------------------------------
 #
 
 /include/parser.php
 
 #
-#---------[ 9. FIND) ]----------------------------------------------------------
+#---------[ 6. FIND) ]----------------------------------------------------------
 #
 
-		if (preg_match('%\[/?(?:quote|code|list|h)\b[^\]]*\]%i', $text))
-			$errors[] = $lang['Signature quote/code/list/h'];
+		if (preg_match('%\[/?(?:quote|code|video|list|h)\b[^\]]*\]%i', $text))
+			$errors[] = __('The quote, code, list, video, and heading BBCodes are not allowed in signatures.', 'luna');
 
 #
-#---------[ 10. REPLACE WITH ]--------------------------------------------------
+#---------[ 7. REPLACE WITH ]--------------------------------------------------
 #
 
-		if (preg_match('%\[/?(?:spoiler|quote|code|list|h)\b[^\]]*\]%i', $text))
-			$errors[] = $lang['Signature quote/code/list/h'];
+		if (preg_match('%\[/?(?:quote|code|video|list|h|spoiler)\b[^\]]*\]%i', $text))
+			$errors[] = __('The quote, code, list, video, heading, and spoiler BBCodes are not allowed in signatures.', 'luna');
 
 #
-#---------[ 11. FIND ]----------------------------------------------------------
-#
-
-	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
-
-#
-#---------[ 12. REPLACE WITH ]--------------------------------------------------
+#---------[ 8. FIND ]----------------------------------------------------------
 #
 
 	// Remove empty tags
-	while (!is_null($new_text = preg_replace('%\[(spoiler|b|u|s|ins|del|em|i|h|colou?r|quote|img|url|email|list|topic|post|forum|user|q|sup|sub|left|right|center|justify|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text)))
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
 
 #
-#---------[ 13. FIND ]----------------------------------------------------------
+#---------[ 9. REPLACE WITH ]--------------------------------------------------
+#
+
+	// Remove empty tags
+	while (!is_null($new_text = preg_replace('%\[(b|u|s|ins|i|h|color|size|center|quote|c|img|url|email|list|sup|sub|video|spoiler)(?:\=[^\]]*)?\]\s*\[/\1\]%', '', $text))) {
+
+#
+#---------[ 10. FIND ]----------------------------------------------------------
 #
 
 	// List of all the tags
-	$tags = array('size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video');
 
 #
-#---------[ 14. REPLACE WITH ]--------------------------------------------------
+#---------[ 11. REPLACE WITH ]--------------------------------------------------
 #
 
 	// List of all the tags
-	$tags = array('spoiler', 'size', 'font', 'hr', 'quote', 'code', 'b', 'i', 'u', 's', 'ins', 'del', 'em', 'color', 'colour', 'url', 'email', 'img', 'list', '*', 'h', 'topic', 'post', 'forum', 'user', 'q', 'sup', 'sub', 'left', 'right', 'center', 'justify', 'video');
+	$tags = array('quote', 'code', 'c', 'b', 'i', 'u', 's', 'ins', 'size', 'center', 'color', 'url', 'email', 'img', 'list', '*', 'h', 'sup', 'sub', 'video', 'spoiler');
 
 #
-#---------[ 15. FIND ]----------------------------------------------------------
+#---------[ 12. FIND ]----------------------------------------------------------
 #
 
 	// Tags we can nest and the depth they can be nested to
 	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5);
 
 #
-#---------[ 16. REPLACE WITH ]--------------------------------------------------
+#---------[ 13. REPLACE WITH ]--------------------------------------------------
 #
 
 	// Tags we can nest and the depth they can be nested to
 	$tags_nested = array('quote' => $luna_config['o_quote_depth'], 'list' => 5, '*' => 5, 'spoiler' => 5);
 
 #
-#---------[ 17. FIND ]----------------------------------------------------------
+#---------[ 14. FIND ]----------------------------------------------------------
 #
 
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', '*', 'left', 'right', 'center', 'justify');
+	$tags_block = array('quote', 'code', 'list', 'h', '*');
 
 #
-#---------[ 18. REPLACE WITH ]--------------------------------------------------
+#---------[ 15. REPLACE WITH ]--------------------------------------------------
 #
 
 	// Block tags, block tags can only go within another block tag, they cannot be in a normal tag
-	$tags_block = array('quote', 'code', 'list', 'h', '*', 'left', 'right', 'center', 'justify', 'spoiler');
+	$tags_block = array('quote', 'code', 'list', 'h', '*', 'spoiler');
 
 #
-#---------[ 19. FIND ]----------------------------------------------------------
+#---------[ 16. FIND ]----------------------------------------------------------
 #
 
 	if (!$is_signature)
 	{
 
 #
-#---------[ 20. BEFORE, ADD ]---------------------------------------------------
+#---------[ 17. BEFORE, ADD ]---------------------------------------------------
 #
 
 	if (strpos($text, '[spoiler') !== false)
@@ -166,8 +145,13 @@
 	}
 
 #
-#---------[ 21. SAVE ]----------------------------------------------------------
+#---------[ 18. SAVE ]----------------------------------------------------------
 #
 
 /include/parser.php
 
+#
+#---------[ 19. Translations ]----------------------------------------------------------
+#
+
+For translations to be in effect, you'll need to regenerate the language files from Luna with Poedit.
