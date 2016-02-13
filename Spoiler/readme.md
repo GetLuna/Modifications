@@ -1,17 +1,11 @@
 ## About
-**Name:** Spoiler
-
-**Version:** 2.1
-
-**Luna version:** 1.3, 1.4
-
-**Developer:** Luna Group, Visman
-
-**Developer website:** http://getluna.org
-
-**Description:** Adds the spoiler tag
-
-**Last release date:** 13.02.'16
+- **Name:** Spoiler
+- **Version:** 2.1
+- **Luna version:** 1.3, 1.4
+- **Developer:** Luna Group, Visman
+- **Developer website:** http://getluna.org
+- **Description:** Adds the spoiler tag
+- **Last release date:** 13.02.'16
 
 ## Instructions
 
